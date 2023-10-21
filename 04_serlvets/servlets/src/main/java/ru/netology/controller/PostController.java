@@ -11,12 +11,9 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class PostController {
-    public static final String APPLICATION_JSON = "application/json";
-    public static final String GET_METHOD = "GET";   // Добавляем константу для GET метода
-    public static final String POST_METHOD = "POST"; // Добавляем константу для POST метода
-    public static final String DELETE_METHOD = "DELETE"; // Добавляем константу для DELETE метода
-
     private final PostService service;
+
+    public static final String APPLICATION_JSON = "application/json";
 
     public PostController(PostService service) {
         this.service = service;
@@ -29,7 +26,6 @@ public class PostController {
         try {
             response.getWriter().print(gson.toJson(data));
         } catch (IOException e) {
-            // Обработка исключения, например, вывод в лог
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
