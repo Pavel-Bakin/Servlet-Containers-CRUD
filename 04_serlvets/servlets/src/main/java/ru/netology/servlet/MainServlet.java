@@ -1,7 +1,6 @@
 package ru.netology.servlet;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
-import ru.netology.confiq.AppConfig;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.netology.controller.PostController;
 
 import javax.servlet.ServletConfig;
@@ -20,10 +19,7 @@ public class MainServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(AppConfig.class);
-        context.refresh();
-        controller = context.getBean(PostController.class);
+        controller = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext()).getBean(PostController.class);
     }
 
     @Override
