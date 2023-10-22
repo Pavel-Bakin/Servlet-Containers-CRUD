@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="postRepository" class="ru.netology.repository.PostRepository"/>
+    <bean id="postService" class="ru.netology.service.PostService">
+        <constructor-arg ref="postRepository"/>
+    </bean>
+    <bean id="postController" class="ru.netology.controller.PostController">
+        <constructor-arg ref="postService"/>
+    </bean>
+
+</beans>
